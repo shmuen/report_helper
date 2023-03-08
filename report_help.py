@@ -26,12 +26,8 @@ hide_table_index = """
 st.markdown(hide_table_index, unsafe_allow_html=True)
 
 
-transcript_list = pd.read_csv(r'C:\Users\13060119\transcript_list.txt',sep='\t')
-
-test = pd.read_csv(r'C:\Users\13060119\Desktop\transcripts.txt',sep='\t')
-test["CDS length"] = test["CDS length"].astype('Int64')
-
-transcript_list["Length of CDS"] = transcript_list["Length of CDS"].astype('Int64')
+transcripts = pd.read_csv(r'C:\Users\13060119\Desktop\transcripts.txt',sep='\t')
+transcripts["CDS length"] = transcripts["CDS length"].astype('Int64')
 
 tab1, tab2, tab3, tab4 = st.tabs(["Befund", "A posteriori", "HGMD batch","Listenvergleich"])
 
@@ -43,26 +39,13 @@ with tab1:
         name = st.text_input('Genname', placeholder= "e.g. CFTR")
         #name = st.selectbox('Genname',gene_list["Genname"])
         
-    # gene = mv.query(name)
-    # if type(gene["hits"][0]["snpeff"]["ann"]) is dict:
-    #     df = pd.DataFrame({'Genname': gene["hits"][0]["snpeff"]["ann"]["genename"],
-    #                   'Transkript': gene["hits"][0]["snpeff"]["ann"]["feature_id"],
-    #                   'CDS Länge': gene["hits"][0]["snpeff"]["ann"]["cds"]["length"]}, index = [0])
-    # else:
-    #     df = pd.DataFrame({'Genname': gene["hits"][0]["snpeff"]["ann"][0]["genename"],
-    #                   'Transkript': gene["hits"][0]["snpeff"]["ann"][0]["feature_id"],
-    #                   'CDS Länge': gene["hits"][0]["snpeff"]["ann"][0]["cds"]["length"]}, index = [0])
-    # st.table(df)
-
-
     st.write("Transkript")
-    transcr = transcript_list[transcript_list["Approved symbol"] == name.upper()]
-    # trans2 = test[test['Gene symbol'] == name.upper()]
+    transcr = transcripts[transcripts['Gene symbol'] == name.upper()]
     st.table(transcr) 
     
     gene_250 = 0
-    if transcr["Length of CDS"].any():
-        gene_len = transcr["Length of CDS"]
+    if transcr["CDS length"].any():
+        gene_len = transcr["CDS length"]
         gene_250 = math.floor(gene_len/250)
     
     with col2:
