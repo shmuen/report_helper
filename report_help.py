@@ -26,7 +26,7 @@ hide_table_index = """
 st.markdown(hide_table_index, unsafe_allow_html=True)
 
 
-transcripts = pd.read_csv(r'C:\Users\13060119\Desktop\transcripts.txt',sep='\t')
+transcripts = pd.read_csv('transcripts.txt',sep='\t')
 transcripts["CDS length"] = transcripts["CDS length"].astype('Int64')
 
 tab1, tab2, tab3, tab4 = st.tabs(["Befund", "A posteriori", "HGMD batch","Listenvergleich"])
