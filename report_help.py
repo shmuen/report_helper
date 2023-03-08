@@ -10,7 +10,6 @@ import pandas as pd
 import streamlit as st
 import math
 import numpy as np
-from biothings_client import get_client
 
 #initialize
 mv = get_client('variant')
@@ -267,70 +266,4 @@ with tab3:
 
     with tab4_c2:
         st.text_area("HGMD sytle Liste", '\n'.join(genes_out_u))
-    # hgmd_df = pd.DataFrame(genes_out_u)
-    # style = hgmd_df.style.hide_index()
-    # style.hide_columns()
-    # C:\Users\13060119\.spyder-py3\temp.py:280: FutureWarning: this method is deprecated in favour of `Styler.hide(axis='columns')`
-    # st.table(hgmd_df)
-        
-
-#%% Variant stuff
-
-
-# with tab2:
-
-#     #create container to contain everything
-#     c = st.container()
-    
-    
-#     c.write('\nVariant stuff')
-#     var = mv.getvariant(c.text_input('variante'))
-    
-    
-#     if var:
-#         #create 3 columsn for output
-#         var_c1, var_c2, var_c3 = c.columns(3)
-        
-        
-#         #column 1
-#         #CDS length and transcript
-#         if "snpeff" in var:
-#             if type(var["snpeff"]["ann"]) is dict:
-#                 var_c1.write("CDS-Länge: " + str(var["snpeff"]["ann"]["cds"]["length"]))
-#             else:
-#                 var_c1.write("CDS-Länge: " + str(var["snpeff"]["ann"][-1]["cds"]["length"]))
-        
-#         if "civic" in var:
-#             var_c1.write("Transkript: " + var["civic"]["hgvs_expressions"][0].split(":")[0])
-        
-#         #column 2
-#         #gnomad MAF and het/hom    
-#         var_c2.subheader("gnomAD:")
-#         if "gnomad_exome" in var:
-#             var_c2.write("MAF: " + str(var["gnomad_exome"]["af"]["af"]))
-#             var_c2.write("heterozygot: x" + str(var["gnomad_exome"]["ac"]["ac"]))
-#             var_c2.write("homozgyot: x" + str(var["gnomad_exome"]["hom"]["hom"]))
-                         
-                 
-#         #column 3
-#         #clinvar
-#         var_c3.subheader("ClinVar:")
-#         if "clinvar" in var:
-#             clinvar_list = []
-#             if type(var["clinvar"]["rcv"]) is dict:
-#                 clinvar_list.append(var["clinvar"]["rcv"]["clinical_significance"])
-#             else:
-#                 for k in var["clinvar"]["rcv"]:
-#                     clinvar_list.append(k["clinical_significance"])
-        
-        
-#             var_c3.write("ID: " + str(var["clinvar"]["variant_id"]))
-            
-#             for classification in ['Pathogenic', 'Likely pathogenic', 'Uncertain significane', 'Likely benign', 'Benign']:
-#                 clin_count = clinvar_list.count(classification)
-#                 if clin_count:
-#                     var_c3.write(classification + ": x" + str(clin_count))
-
-
-
-    
+   
