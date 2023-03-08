@@ -11,9 +11,6 @@ import streamlit as st
 import math
 import numpy as np
 
-#initialize
-mv = get_client('variant')
-
 #CSS to inject contained in a string
 hide_table_index = """
     <style>
